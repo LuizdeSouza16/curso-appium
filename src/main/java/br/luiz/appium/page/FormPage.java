@@ -40,7 +40,11 @@ public class FormPage extends BasePage {
     }
 
     public void clickSave() {
-        click(By.xpath("//*[@text='SALVAR']"));
+        clickByText("SALVAR");
+    }
+
+    public void clickSaveDemorado() {
+        clickByText("SALVAR DEMORADO");
     }
 
     public String getNameSaved() {

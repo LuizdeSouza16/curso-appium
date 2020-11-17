@@ -57,5 +57,21 @@ public class FormTest extends BaseTest {
         Assert.assertEquals("Checkbox: Marcado", form.getCheckboxSaved());
         Assert.assertEquals("Data: 01/01/2000", form.getDateSaved());
     }
+    @Test
+    public void deveRealizarCadastroDemorado(){
+
+        form.writeName("Luiz");
+        form.clickCheckbox();
+        form.clickSwitch();
+        form.selectCombo("PS4");
+        form.clickSaveDemorado();
+
+        Assert.assertEquals("Nome: Luiz",form.getNameSaved());
+        Assert.assertEquals("Console: ps4", form.getConsoleSaved());
+        Assert.assertEquals("Slider: 25", form.getSliderSaved());
+        Assert.assertEquals("Switch: Off", form.getSwitchSaved());
+        Assert.assertEquals("Checkbox: Marcado", form.getCheckboxSaved());
+        Assert.assertEquals("Data: 01/01/2000", form.getDateSaved());
+    }
 
 }
