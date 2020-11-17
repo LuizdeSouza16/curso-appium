@@ -1,17 +1,15 @@
 package br.luiz.appium.test;
 
-import br.luiz.appium.core.DriverFactory;
+import br.luiz.appium.core.BaseTest;
 import br.luiz.appium.page.FormPage;
 import br.luiz.appium.page.MenuPage;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FormTest {
+public class FormTest extends BaseTest {
     private MenuPage menu = new MenuPage();
     private FormPage form = new FormPage();
-
 
     @Before
     public void openApp()  {
@@ -20,31 +18,25 @@ public class FormTest {
 
     @Test
     public void devePreencherCampoTexto()  {
-        //escrever nome
         form.writeName("Luiz");
         Assert.assertEquals("Luiz", form.getName());
     }
 
     @Test
     public void deveIntereagirCombo() {
-        //click in combo
         form.selectCombo("Nintendo Switch");
 
-        //verify option
         Assert.assertEquals("Nintendo Switch", form.getValueCombo());
     }
 
     @Test
     public void deveIntereagirSwitch() {
-
         Assert.assertFalse(form.isCheckMarcado());
         Assert.assertTrue(form.isSwitchMarcado());
 
-        //click in element
         form.clickCheckbox();
         form.clickSwitch();
 
-        // verify states change
         Assert.assertTrue(form.isCheckMarcado());
         Assert.assertFalse(form.isSwitchMarcado());
      }
@@ -53,8 +45,6 @@ public class FormTest {
     public void deveRealizarCadastro(){
 
         form.writeName("Luiz");
-
-        //click in combo
         form.clickCheckbox();
         form.clickSwitch();
         form.selectCombo("PS4");
@@ -66,12 +56,6 @@ public class FormTest {
         Assert.assertEquals("Switch: Off", form.getSwitchSaved());
         Assert.assertEquals("Checkbox: Marcado", form.getCheckboxSaved());
         Assert.assertEquals("Data: 01/01/2000", form.getDateSaved());
-
-    }
-
-    @After
-    public void closeApp(){
-        DriverFactory.killDriver();
     }
 
 }

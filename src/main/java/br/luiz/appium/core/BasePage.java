@@ -2,11 +2,9 @@ package br.luiz.appium.core;
 
 import org.openqa.selenium.By;
 
+import static br.luiz.appium.core.DriverFactory.getDriver;
 
-import static br.luiz.appium.core.DriverFactory.*;
-
-public class DSL {
-
+public class BasePage {
     public void write(By by, String text){
         getDriver().findElement(by).sendKeys(text);
     }
@@ -26,11 +24,12 @@ public class DSL {
         getDriver().findElement(by).click();
 
         //select the option
-      clickByText(value);
+        clickByText(value);
     }
 
     public boolean isCheckMarcado(By by){
         return getDriver().findElement(by).getAttribute("checked").equals("true");
     }
+
 
 }

@@ -1,12 +1,10 @@
 package br.luiz.appium.page;
 
-import br.luiz.appium.core.DSL;
+import br.luiz.appium.core.BasePage;
 
-public class MenuPage {
-
-    private static  DSL dsl = new DSL();
+public class MenuPage extends BasePage {
 
     public void accessForm(){
-        dsl.clickByText("Formulário");
+        clickByText("Formulário");
     }
 }
