@@ -1,46 +1,30 @@
-package br.luiz;
+package br.luiz.appium;
 
+import br.luiz.appium.core.DriverFactory;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 public class FormTest {
-    static AndroidDriver<MobileElement> driver;
+    private static AndroidDriver<MobileElement> driver;
 
     @Before
     public void openApp() throws MalformedURLException {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "emulator-5554");
-        desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP, "D:\\Projetos\\curso-appium\\src\\main\\resources\\CTAppium_1_2.apk");
+        driver = DriverFactory.getDriver();
 
-
-        URL remoteUrl = new URL("http://localhost:4723/wd/hub");
-        driver = new AndroidDriver(remoteUrl, desiredCapabilities);
-        driver = new AndroidDriver<MobileElement>(remoteUrl, desiredCapabilities);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //selecionar formulário
+        driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
     }
 
     @Test
-    public void devePreencherCampoTexto() throws MalformedURLException {
-        //selecionar formulário
-        List<MobileElement> elements = driver.findElements(By.className("android.widget.TextView"));
-
-        elements.get(1).click();
-
+    public void devePreencherCampoTexto()  {
         //escrever nome
         MobileElement inputText = driver.findElement(MobileBy.AccessibilityId("nome"));
         inputText.sendKeys("Luiz");
@@ -52,10 +36,7 @@ public class FormTest {
     }
 
     @Test
-    public void deveIntereagirCombo() throws MalformedURLException {
-        //selecionar formulário
-        driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
-
+    public void deveIntereagirCombo() {
         //click in combo
         driver.findElement(MobileBy.AccessibilityId("console")).click();
 
@@ -70,9 +51,6 @@ public class FormTest {
 
     @Test
     public void deveIntereagirSwitch() {
-        //selecionar formulário
-        driver.findElement(By.xpath("//*[@text='Formulário']")).click();
-
        //verify element state
         MobileElement checkBox =  driver.findElement(By.className("android.widget.CheckBox"));
         MobileElement inputSwitch   =  driver.findElement(MobileBy.AccessibilityId("switch"));
@@ -88,9 +66,6 @@ public class FormTest {
 
     @Test
     public void preecherFormulario(){
-        //selecionar formulário
-        driver.findElement(By.xpath("//*[@text='Formulário']")).click();
-        //escrever nome
 
         driver.findElement(MobileBy.AccessibilityId("nome")).sendKeys("Luiz");
 
@@ -113,7 +88,7 @@ public class FormTest {
 
     @After
     public void closeApp(){
-        driver.quit();
+        DriverFactory.killDriver();
     }
 
 }
