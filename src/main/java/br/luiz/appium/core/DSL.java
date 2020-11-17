@@ -1,10 +1,7 @@
 package br.luiz.appium.core;
 
-import io.appium.java_client.MobileBy;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 
-import javax.swing.*;
 
 import static br.luiz.appium.core.DriverFactory.*;
 
