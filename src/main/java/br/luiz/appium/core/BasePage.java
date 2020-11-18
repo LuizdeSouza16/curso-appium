@@ -1,6 +1,8 @@
 package br.luiz.appium.core;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 
 import java.util.List;
@@ -35,8 +37,12 @@ public class BasePage {
     }
 
     public boolean isExisteElementoPorTexto(String texto) {
-        List<MobileElement> elements = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
+        List<MobileElement> elements = getDriver().findElements(By.xpath("//*[@text='" + texto + "']"));
 
         return elements.size() > 0;
+    }
+
+    public void tap(int x, int y) {
+        new TouchAction(getDriver()).tap(PointOption.point(x, y)).perform();
     }
 }

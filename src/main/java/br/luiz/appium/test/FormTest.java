@@ -3,6 +3,7 @@ package br.luiz.appium.test;
 import br.luiz.appium.core.BaseTest;
 import br.luiz.appium.page.FormPage;
 import br.luiz.appium.page.MenuPage;
+import io.appium.java_client.MobileBy;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,13 +83,19 @@ public class FormTest extends BaseTest {
         Assert.assertTrue(form.isExisteElementoPorTexto("20/2/2000"));
     }
 
-//    @Test
-//    public void deveAlterarHorario(){
-//        form.clickByText("06:00");
-//        form.clickByText("5");
-//        form.clickByText("15");
-//        form.clickByText("OK");
-//        Assert.assertTrue(form.isExisteElementoPorTexto("05:15"));
-//    }
+    @Test
+    public void deveAlterarHorario(){
+        form.clickByText("06:00");
+        form.click(MobileBy.AccessibilityId("5"));
+        form.click(MobileBy.AccessibilityId("15"));
+        form.clickByText("OK");
+        Assert.assertTrue(form.isExisteElementoPorTexto("5:15"));
+    }
 
+    @Test
+    public void deveInteragirComSeekbar (){
+
+        form.clickcarSeekBar(0.05);
+        form.clickByText("SALVAR");
+    }
 }

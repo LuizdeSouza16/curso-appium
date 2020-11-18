@@ -24,4 +24,13 @@ public class AlertPage extends BasePage {
     public void clickExit(){
         clickByText("SAIR");
     }
+
+    public void clickSimple() {
+        clickByText("ALERTA SIMPLES");
+    }
+
+    public void clickForaAlert(int x, int y){
+        tap(x,y);
+    }
+
 }

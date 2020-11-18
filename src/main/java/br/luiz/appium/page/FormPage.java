@@ -2,7 +2,10 @@ package br.luiz.appium.page;
 
 import br.luiz.appium.core.BasePage;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+
+import static br.luiz.appium.core.DriverFactory.getDriver;
 
 public class FormPage extends BasePage {
 
@@ -71,5 +74,15 @@ public class FormPage extends BasePage {
         return getText(By.xpath("//android.widget.TextView[starts-with(@text, 'Data:')]"));
     }
 
+    public void clickcarSeekBar(double position){
+        int delta = 55;
+        MobileElement seek = getDriver().findElement(MobileBy.AccessibilityId("slid"));
+        int y = seek.getLocation().y  + (seek.getSize().height / 2);
+
+        int xInicial = seek.getLocation().x + delta;
+        int x = (int) ( xInicial + ((seek.getSize().width -2 * delta)* position));
+
+        tap(x,y);
+    }
 
 }
