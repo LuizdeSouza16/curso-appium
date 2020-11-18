@@ -2,13 +2,13 @@ package br.luiz.appium.test;
 
 import br.luiz.appium.core.BaseTest;
 import br.luiz.appium.page.MenuPage;
-import br.luiz.appium.page.PageAlerts;
+import br.luiz.appium.page.AlertPage;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class AlertTest extends BaseTest {
     private MenuPage menu = new MenuPage();
-    private PageAlerts alert = new PageAlerts();
+    private AlertPage alert = new AlertPage();
 
     @Test
     public void deveConfirmar(){

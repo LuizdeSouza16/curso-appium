@@ -16,10 +16,10 @@ public class TabTest extends BaseTest {
         // acessar menu abas
         menu.accessTabs();
         //verificar aba1
-       Assert.assertEquals("Este é o conteúdo da Aba 1", tab.getMessageTab());
+        Assert.assertTrue(tab.isAba1());
         //acessar aba2
         tab.clickTabTwo();
         //verificar aba2
-        //Assert.assertEquals("Este é o conteúdo da Aba 2", tab.getMessageTab());
+        Assert.assertTrue(tab.isAba1());
     }
 }

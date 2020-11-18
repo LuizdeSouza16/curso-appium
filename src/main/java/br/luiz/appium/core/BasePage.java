@@ -35,7 +35,7 @@ public class BasePage {
     }
 
     public boolean isExisteElementoPorTexto(String texto) {
-        List<MobileElement> elements = getDriver().findElements(By.xpath("*[@text='"+texto+"']"));
+        List<MobileElement> elements = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
 
         return elements.size() > 0;
     }

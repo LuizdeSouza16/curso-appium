@@ -3,7 +3,7 @@ package br.luiz.appium.page;
 import br.luiz.appium.core.BasePage;
 import org.openqa.selenium.By;
 
-public class PageAlerts extends BasePage {
+public class AlertPage extends BasePage {
 
     public void clickConfirm(){
         clickByText("ALERTA CONFIRM");
