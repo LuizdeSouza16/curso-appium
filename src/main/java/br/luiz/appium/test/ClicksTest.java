@@ -8,14 +8,23 @@ import org.junit.Test;
 
 public class ClicksTest extends BaseTest {
 
-    private MenuPage menu = new MenuPage();
-    private ClickPage clique  = new ClickPage();
+    private final MenuPage menu = new MenuPage();
+    private final ClickPage clique  = new ClickPage();
+
     @Test
     public void cliqueLongo(){
         menu.accessCliques();
         clique.cliqueLongo("Clique Longo");
         Assert.assertEquals("Clique Longo", clique.obterTexto());
 
+    }
+
+    @Test
+    public void cliqueDuplo(){
+        menu.accessCliques();
+        clique.CliqueDuplo();
+
+        Assert.assertEquals("Duplo Clique", clique.obterTexto());
     }
 }
 
