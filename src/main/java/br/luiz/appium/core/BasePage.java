@@ -1,13 +1,16 @@
 package br.luiz.appium.core;
 
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
+import static br.luiz.appium.core.DriverFactory.getDriver;
 
+import java.time.Duration;
 import java.util.List;
 
-import static br.luiz.appium.core.DriverFactory.getDriver;
+import org.openqa.selenium.By;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 public class BasePage {
     public void write(By by, String text) {
@@ -45,4 +48,19 @@ public class BasePage {
     public void tap(int x, int y) {
         new TouchAction(getDriver()).tap(PointOption.point(x, y)).perform();
     }
+    
+    public void scroll(double inicio, double fim) {
+		org.openqa.selenium.Dimension size = DriverFactory.getDriver().manage().window().getSize();
+		
+		int x = size.width / 2;
+		int start_y = (int) (size.height * inicio);
+		int end_y = (int) (size.height * fim);
+		new TouchAction<>(DriverFactory.getDriver())
+			.press(PointOption.point(x, start_y))	
+			.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+			.moveTo(PointOption.point(x, end_y))
+			.release()
+			.perform();
+		
+	}
 }
