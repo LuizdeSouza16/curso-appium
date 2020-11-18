@@ -74,4 +74,21 @@ public class FormTest extends BaseTest {
         Assert.assertEquals("Data: 01/01/2000", form.getDateSaved());
     }
 
+    @Test
+    public void deveAlterarData(){
+        form.clickByText("01/01/2000");
+        form.clickByText("20");
+        form.clickByText("OK");
+        Assert.assertTrue(form.isExisteElementoPorTexto("20/2/2000"));
+    }
+
+//    @Test
+//    public void deveAlterarHorario(){
+//        form.clickByText("06:00");
+//        form.clickByText("5");
+//        form.clickByText("15");
+//        form.clickByText("OK");
+//        Assert.assertTrue(form.isExisteElementoPorTexto("05:15"));
+//    }
+
 }
