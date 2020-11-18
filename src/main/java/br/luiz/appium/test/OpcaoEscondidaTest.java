@@ -19,7 +19,8 @@ public class OpcaoEscondidaTest extends BasePage{
 		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Formulário']")));
 		System.out.println("COMEÇANDO");
-		scroll(0.9, 0.1);
+		
+		scrollDown();
 	
 		menu.clickByText("Opção bem escondida");
 	

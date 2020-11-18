@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
-
+import org.openqa.selenium.Dimension;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
@@ -49,13 +49,32 @@ public class BasePage {
         new TouchAction(getDriver()).tap(PointOption.point(x, y)).perform();
     }
     
+    
+    public void scrollDown() {
+    	scroll(0.9, 0.1);
+    }
+    
+    public void scrollUp() {
+    	scroll(0.1, 0.9);
+    }
+    
+    public void swipeLeft() {
+    	swipe(0.1, 0.9);
+    }
+    
+    public void swipeRight() {
+    	swipe(0.9, 0.1);
+    }
+    
+    
     public void scroll(double inicio, double fim) {
-		org.openqa.selenium.Dimension size = DriverFactory.getDriver().manage().window().getSize();
+		Dimension size = getDriver().manage().window().getSize();
 		
 		int x = size.width / 2;
 		int start_y = (int) (size.height * inicio);
 		int end_y = (int) (size.height * fim);
-		new TouchAction<>(DriverFactory.getDriver())
+		
+		new TouchAction<>(getDriver())
 			.press(PointOption.point(x, start_y))	
 			.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
 			.moveTo(PointOption.point(x, end_y))
@@ -63,4 +82,21 @@ public class BasePage {
 			.perform();
 		
 	}
+    
+    public void swipe(double inicio, double fim) {
+    	Dimension size = getDriver().manage().window().getSize();
+    	
+    	int y = size.height / 2;
+    	
+    	int start_x = (int) (size.width * inicio);
+    	int end_x = (int) (size.width * fim);
+    	
+    	new TouchAction<>(getDriver())
+		.press(PointOption.point(start_x, y))	
+		.waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+		.moveTo(PointOption.point(end_x, y))
+		.release()
+		.perform();
+	
+    }
 }
