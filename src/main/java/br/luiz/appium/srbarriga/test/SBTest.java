@@ -8,6 +8,7 @@ import br.luiz.appium.core.BaseTest;
 import br.luiz.appium.page.MenuPage;
 import br.luiz.appium.srbarriga.page.ContasPage;
 import br.luiz.appium.srbarriga.page.MovPage;
+import br.luiz.appium.srbarriga.page.ResumoPage;
 import br.luiz.appium.srbarriga.page.SBLoginPage;
 import br.luiz.appium.srbarriga.page.SBHomePage;
 
@@ -18,6 +19,7 @@ public class SBTest extends BaseTest{
 	private ContasPage conta = new ContasPage();
 	private SBHomePage home = new SBHomePage();
 	private MovPage mov = new MovPage();
+	private ResumoPage res = new ResumoPage();
 	
 	@Before
 	public void login() {
@@ -59,6 +61,15 @@ public class SBTest extends BaseTest{
 		mov.clicarContaMesmoNome();
 		mov.salvar();
 		Assert.assertTrue(conta.isExisteElementoPorTexto("Movimentação cadastrada com sucesso"));
+		
+	}
+	
+	@Test
+	public void validarResumo() {
+		home.accessResumo();
+		res.swipeCalculo();
+		res.cliqueDel();
+		res.cliqueAtualizar();
 		
 	}
 
