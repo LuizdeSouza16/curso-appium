@@ -18,7 +18,6 @@ public class OpcaoEscondidaTest extends BasePage{
 		//scroll down
 		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Formulário']")));
-		System.out.println("COMEÇANDO");
 		
 		scrollDown();
 	
